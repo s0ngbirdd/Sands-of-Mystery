@@ -95,7 +95,8 @@ public class UIController : MonoBehaviour
 
     private void Start()
     {
-        _startCurrency = SaveLoadSystem.Instance.LoadGame1();
+        //_startCurrency = SaveLoadSystem.Instance.LoadGame1();
+        _startCurrency = PlayerPrefs.GetInt("Currency", 0);
         _currencyTMP.text = _startCurrency.ToString();
         
         if (AudioManager.Instance.ReturnSoundEnabled())
@@ -299,11 +300,18 @@ public class UIController : MonoBehaviour
 
     private void CheckScoreForSave()
     {
-        SaveLoadSystem.Instance.SaveGame1(_startCurrency);
+        /*SaveLoadSystem.Instance.SaveGame1(_startCurrency);
         
         if (_startScore > SaveLoadSystem.Instance.LoadGame())
         {
             SaveLoadSystem.Instance.SaveGame(_startScore);
+        }*/
+        
+        PlayerPrefs.SetInt("Currency", _startCurrency);
+        
+        if (_startScore > PlayerPrefs.GetInt("Score"))
+        {
+            PlayerPrefs.SetInt("Score", _startScore);
         }
     }
 

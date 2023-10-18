@@ -9,7 +9,8 @@ public class MainMenuScoreController : MonoBehaviour
 
     private void Start()
     {
-        _score = SaveLoadSystem.Instance.LoadGame();
+        //_score = SaveLoadSystem.Instance.LoadGame();
+        _score = PlayerPrefs.GetInt("Score", 0);
         _scoreText.text = _score.ToString();
     }
 }
